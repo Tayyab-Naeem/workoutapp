@@ -1,10 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:workoutapp/models/exercise.dart';
 import 'package:workoutapp/models/workout.dart';
 
-class WorkOutData {
+class WorkOutData extends ChangeNotifier {
   List<WorkOut> workOutList = [
     WorkOut(name: "Upper Body", exercises: [
       Exercise(name: 'bicep curl', reps: '10', sets: '10', weight: '3')
+    ]),
+    WorkOut(name: "lower Body", exercises: [
+      Exercise(name: 'squit curl', reps: '10', sets: '10', weight: '3')
     ]),
   ];
 
@@ -21,7 +25,8 @@ class WorkOutData {
 
   /// add a new workout with blank list of Excercise
   void addWorkOut(String name) {
-    WorkOut(name: name, exercises: []);
+    workOutList.add(WorkOut(name: name, exercises: []));
+    notifyListeners();
   }
 
   /// add exercise to the workOut
@@ -36,6 +41,7 @@ class WorkOutData {
     WorkOut releventWorkout = getReleventWorkOut(workoutName);
     releventWorkout.exercises.add(
         Exercise(name: exerciseName, reps: reps, sets: sets, weight: weight));
+    notifyListeners();
   }
 
   /// check off exercise
@@ -47,6 +53,7 @@ class WorkOutData {
     Exercise releventExercise = getReleventExercise(workoutName, exerciseName);
 // check off boolean to show user completed the exercise
     releventExercise.isCompleted = !releventExercise.isCompleted;
+    notifyListeners();
   }
 
   /// return a relevent workout object and given a workoutName
