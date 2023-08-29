@@ -82,11 +82,69 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) => ListTile(
                     title: Text(value.getWorkOutList()[index].name),
                     trailing: IconButton(
-                        onPressed: goToWorkOutPage,
-                        icon: Icon(Icons.arrow_forward_ios)),
+                        onPressed: () =>
+                            goToWorkOutPage(value.getWorkOutList()[index].name),
+                        icon: const Icon(Icons.arrow_forward_ios)),
                   )),
         );
       },
     );
   }
 }
+
+/// code for hive database
+// import 'package:flutter/material.dart';
+// import 'package:hive/hive.dart';
+//
+// class HomePage extends StatefulWidget {
+//   const HomePage({super.key});
+//
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
+//
+// class _HomePageState extends State<HomePage> {
+//   // ref our box
+//   final _mybox = Hive.box('mybox');
+//
+//   // write
+//   void writeData() {
+//     _mybox.put(3, ['ali', 26, 'purple']);
+//   }
+//
+//   // read
+//   void readData() {
+//     print(_mybox.get(3));
+//   }
+//
+//   //delete
+//   void deleteData() {
+//     _mybox.delete(3);
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: [
+//             MaterialButton(
+//               onPressed: writeData,
+//               color: Colors.blue[200],
+//               child: const Text("write"),
+//             ),
+//             MaterialButton(
+//                 onPressed: readData,
+//                 color: Colors.blue[200],
+//                 child: const Text("Read")),
+//             MaterialButton(
+//                 onPressed: deleteData,
+//                 color: Colors.blue[200],
+//                 child: const Text("Delete")),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
