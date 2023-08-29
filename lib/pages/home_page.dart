@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:workoutapp/data/workout_data.dart';
+import 'package:workoutapp/pages/workout_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -53,7 +54,11 @@ class _HomePageState extends State<HomePage> {
 
   void goToWorkOutPage(String workoutName) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => WorkOutPage()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => WorkOutPage(
+                  workOutName: workoutName,
+                )));
   }
 
   @override
